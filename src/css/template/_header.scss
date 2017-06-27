@@ -1,0 +1,31 @@
+.header {
+  @include box-shadow();
+  background: white;
+  z-index: 100;
+
+  &__left {
+    @include flex-item(1, 1, auto);
+  }
+
+  &__right {
+    @include flex-item(1, 1, auto);
+  }
+}
+
+@media screen and (max-width: $small){
+  .header {
+    @include flex-box(column);
+    @include flex-item(0, 1, 128px);
+
+    &__left {
+      border-bottom: solid 1px $black;
+    }
+  }
+}
+
+@media screen and (min-width: 481px){
+  .header {
+    @include flex-box(row);
+    @include flex-item(0, 1, 64px);
+  }
+}
