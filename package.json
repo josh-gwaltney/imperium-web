@@ -1,0 +1,44 @@
+{
+  "name": "imperium-web",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Josh Gwaltney",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/josh-gwaltney/imperium-web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/josh-gwaltney/imperium-web/issues"
+  },
+  "homepage": "https://github.com/josh-gwaltney/imperium-web#readme",
+  "license": "MIT",
+  "scripts": {
+    "build": "set NODE_ENV=dev && webpack",
+    "start": "babel-node index.js"
+  },
+  "dependencies": {
+    "body-parser": "latest",
+    "compression": "latest",
+    "cors": "latest",
+    "express": "latest",
+    "morgan": "latest",
+    "serve-favicon": "latest",
+    "socket.io": "latest"
+  },
+  "devDependencies": {
+    "babel-cli": "latest",
+    "babel-core": "latest",
+    "babel-preset-es2015": "latest",
+    "babel-preset-es2016": "latest",
+    "babel-preset-es2017": "latest",
+    "babel-preset-stage-2": "latest",
+    "css-loader": "latest",
+    "extract-text-webpack-plugin": "latest",
+    "file-loader": "latest",
+    "node-sass": "latest",
+    "sass-loader": "latest",
+    "style-loader": "latest",
+    "webpack-dev-server": "latest"
+  }
+}
