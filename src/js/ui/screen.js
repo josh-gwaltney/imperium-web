@@ -1,8 +1,8 @@
 /**
- * Imperium 4X (Web) - Window
+ * Imperium 4X (Web) - Screen
  * ===
  *
- * @module window
+ * @module screen
  */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -16,52 +16,88 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Class
 ////////////////////////////////////////////////////////////////////////////////
-class Window {
+class Screen {
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
   //////////////////////////////////////////////////////////////////////////////
+  /**
+   * @property
+   * @private
+   * @type { [ type ] } [ name ]
+   * [ description ]
+   */
+  _id;
+  _x = null;
+  _y = null;
+  _z = null;
+  _height = null;
+  _width = null;
+  _element = null;
+  _hidden = null;
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
+  /**
+   * @property
+   * @public
+   * @type { [ type ] } [ name ]
+   * @returns { [ type ] } [ name ]
+   * [ description ]
+   */
   get element(){
-    return this._element;
+    let element = document.getElementById(this._parentId);
+    return element;
   }
 
+  /**
+   * @constructor
+   * [ description ]
+   * @param  { [ type ]} [ name ] - [ description ]
+   */
   constructor(config){
-    this._id = null;
-    this._x = null;
-    this._y = null;
-    this._z = null;
-    this._height = null;
-    this._width = null;
-    this._element = null;
-    this._hidden = null;
+    this._id = config.id;
+    this._x = config.x;
+    this._y = config.y;
+    this._z = config.z;
+    this._height = config.height;
+    this._width = config.width;
+    this._xOffset = config.xOffset;
+    this._yOffset = config.yOffset;
+    this._scale = config.scale;
 
-    this._init(config);
+    this._init();
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
-  toggle(){
-    this._element.classList.toggle('hidden');
-  }
-
   drag(){
 
   }
 
-  resize(){
+  scroll(){
 
+  }
+
+  zoom(){
+
+  }
+
+  render(){
+    this._refresh();
+    this._draw();
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
-
   _init(config){
+    let element = document.createElement('div');
+    element.id = this._id;
+    element.style.height = this._height;
+
     this._id = config.id;
     this._element = document.createElement('div');
     this._element.id = config.id;
@@ -71,28 +107,34 @@ class Window {
     this._element.style.top = config.y;
     this._element.style.left = config.x;
     this._element.style.zIndex = config.z;
+
+    this._parentElement = document.getElementById(config.id);
+    this._canvas = document.createElement('canvas');
+    this._parentElement.append(this._canvas);
+    this._refresh();
   }
 
-  _resize(){
+  _refresh(){
+    let height = this._parentElement.clientHeight;
+    let width = this._parentElement.clientWidth;
 
+    this._canvas.height = height;
+    this._canvas.width = width;
   }
 
-  _drag(){
+  _draw(){
 
-  }
-
-  _toggle(){
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Static Methods
   //////////////////////////////////////////////////////////////////////////////
   static create(config){
-
+    let element = document.createElement('div');
   }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default Window;
+export default Screen;

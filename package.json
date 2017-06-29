@@ -14,7 +14,7 @@
   "homepage": "https://github.com/josh-gwaltney/imperium-web#readme",
   "license": "MIT",
   "scripts": {
-    "build": "set NODE_ENV=dev && webpack",
+    "build": "set NODE_ENV=dev && webpack --progress --colors --profile --watch",
     "start": "babel-node index.js"
   },
   "dependencies": {
@@ -40,6 +40,7 @@
     "node-sass": "latest",
     "sass-loader": "latest",
     "style-loader": "latest",
+    "webpack": "latest",
     "webpack-dev-server": "latest"
   }
 }

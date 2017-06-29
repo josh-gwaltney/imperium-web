@@ -36,6 +36,10 @@ const SYSTEMS = {
 
 };
 
+const UI = {
+  ROOT_ID: 'root'
+};
+
 const CONFIG = {
   SERVICES: {
     MESSAGE_BUS: new MessageBus()
