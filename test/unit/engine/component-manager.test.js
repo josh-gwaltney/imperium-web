@@ -1,0 +1,1 @@
+import ComponentManager from '../../../src/js/engine/component-manager';

@@ -1,0 +1,1 @@
+import System from '../../../src/js/engine/system';

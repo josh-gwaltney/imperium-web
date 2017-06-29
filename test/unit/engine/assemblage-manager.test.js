@@ -1,0 +1,1 @@
+import AssemblageManager from '../../../src/js/engine/assemblage-manager';

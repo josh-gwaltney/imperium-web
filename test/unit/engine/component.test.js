@@ -1,0 +1,1 @@
+import Component from '../../../src/js/engine/component';

@@ -1,0 +1,1 @@
+import Assemblage from '../../../src/js/engine/assemblage';
