@@ -1,48 +1,33 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Imports
 ////////////////////////////////////////////////////////////////////////////////
-import MessageBus from '../../../shared/src/services/message-bus';
-import PositionComponent from './game/components/position-component';
+// Services
+import MessageService from '../../../shared/src/services/message-service';
+
+// Engine
+import Engine from '../../../shared/src/engine';
+import EntityManager from '../../../shared/src/engine/entity-manager';
+import StateManager from '../../../shared/src/engine/state-manager';
+import componentManager from './game/components';
+import assemblageManager from './game/assemblages';
+import systemManager from './game/systems';
+
+// UI
+//import UI from './ui';
+
+// Game
+import Game from './game';
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
-const SERVICES = {
-
-};
-
-const COMPONENTS = [
-  {
-    id: 'position',
-    constructor: PositionComponent,
-    defaults: {
-      x: 0,
-      y: 0,
-      z: 0
-    }
-  }
-];
-
-const ASSEMBLAGES = [
-  {
-    id: 'cell',
-    components: [
-        'position'
-    ]
-  }
-];
-
-const SYSTEMS = {
-
-};
-
 const UI = {
   ROOT_ID: 'root'
 };
 
 const CONFIG = {
   SERVICES: {
-    MESSAGE_BUS: new MessageBus()
+    MESSAGE_SERVICE: new MessageService()
 
   },
   COMPONENTS: {
@@ -66,30 +51,31 @@ const CONFIG = {
         height: '100%',
         width: '100%'
       },
-      {
-        id: 'economy',
-        x: '16px',
-        y: '16px',
-        z: 72,
-        height: '100px',
-        width: '100px'
-      },
-      {
-        id: 'technology',
-        x: '132px',
-        y: '16px',
-        z: 73,
-        height: '100px',
-        width: '100px'
-      },
-      {
-        id: 'diplomacy',
-        x: '248px',
-        y: '16px',
-        z: 74,
-        height: '100px',
-        width: '100px'
-      }
+      //{
+      //  id: 'economy',
+      //  x: '16px',
+      //  y: '16px',
+      //  z: 72,
+      //  height: '100px',
+      //  width: '100px'
+      //},
+      //{
+      //  id: 'technology',
+      //  x: '132px',
+      //  y: '16px',
+      //  z: 73,
+      //  height: '100px',
+      //  width: '100px'
+      //},
+      //{
+      //  id: 'diplomacy',
+      //  x: '248px',
+      //  y: '16px',
+      //  z: 74,
+      //  height: '100px',
+      //  width: '100px'
+      //}
+      // chat
     ]
   },
   EVENTS: {
@@ -104,7 +90,11 @@ const CONFIG = {
   }
 };
 
+let entityManager = new EntityManager();
+let stateManager = new StateManager(entityManager, componentManager, assemblageManager);
+let engine = new Engine({}, stateManager, systemManager);
+
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default CONFIG;
+export { CONFIG, engine };

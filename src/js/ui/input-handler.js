@@ -22,18 +22,34 @@ class InputHandler {
   // Private Properties
   //////////////////////////////////////////////////////////////////////////////
   _messageBus;
+  _state;
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
 
   constructor(config){
+    this._messageBus = config.SERVICES.MESSAGE_BUS;
+
     this._mouse = {
       x: 0,
       y: 0
     };
 
-    this._messageBus = config.SERVICES.MESSAGE_BUS;
+    this._state = {
+      mouse: {
+        down: false,
+        x: 0,
+        y: 0
+      },
+      keyboard: {
+        m: false,
+        d: false,
+        t: false,
+        c: false,
+        e: false
+      }
+    };
 
     this._init();
   }

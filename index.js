@@ -8,7 +8,7 @@ const APP = express();
 const HTTP = require('http').Server(APP);
 const PORT = process.env.PORT || 3050;
 const LOGGER = require('morgan');
-// const IO = require('socket.io')(HTTP);
+const IO = require('socket.io')(HTTP);
 
 APP.use(bodyParser.json());
 APP.use(compression());
@@ -35,6 +35,6 @@ APP.route('*').get((req, res) => {
 //   });
 // });
 
-APP.listen(PORT);
+HTTP.listen(PORT);
 
 console.log(`Web server started on port ${PORT}`);

@@ -27,14 +27,8 @@ class Screen {
    * @type { [ type ] } [ name ]
    * [ description ]
    */
-  _id;
-  _x = null;
-  _y = null;
-  _z = null;
-  _height = null;
-  _width = null;
-  _element = null;
-  _hidden = null;
+  _element;
+  _canvas;
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Properties
@@ -47,83 +41,112 @@ class Screen {
    * [ description ]
    */
   get element(){
-    let element = document.getElementById(this._parentId);
-    return element;
+    return this._element;
   }
 
+  get height(){
+    return this.element.style.height;
+  }
+
+  get width(){
+    return this.element.style.width;
+  }
+
+  get x(){
+    return this.element.style.left;
+  }
+
+  get y(){
+    return this.element.style.top;
+  }
+
+  get z(){
+    return this.element.style.zIndex;
+  }
+
+  set height(val){
+    this.element.style.height = val + 'px';
+  }
+
+  set width(val){
+    this.element.style.width = val + 'px';
+  }
+
+  set x(val){
+    this.element.style.left = val + 'px';
+  }
+
+  set y(val){
+    this.element.style.top = val + 'px';
+  }
+
+  set z(val){
+    this.element.style.zIndex = val;
+  }
   /**
    * @constructor
    * [ description ]
-   * @param  { [ type ]} [ name ] - [ description ]
+   * @param  {Object} element - the HTML element used for the screen
    */
-  constructor(config){
-    this._id = config.id;
-    this._x = config.x;
-    this._y = config.y;
-    this._z = config.z;
-    this._height = config.height;
-    this._width = config.width;
-    this._xOffset = config.xOffset;
-    this._yOffset = config.yOffset;
-    this._scale = config.scale;
-
+  constructor(element){
+    this._element = element;
     this._init();
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Methods
   //////////////////////////////////////////////////////////////////////////////
-  drag(){
+  toggle(){
+    this._element.classList.toggle('hidden');
+  }
+
+  resize(height, width){
 
   }
 
-  scroll(){
+  drag(x, y){
 
   }
 
-  zoom(){
+  zoom(delta){
 
   }
 
-  render(){
+  scroll(delta){
+
+  }
+
+  render(sprites){
     this._refresh();
-    this._draw();
+    this._draw(sprites);
   }
-
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
-  _init(config){
-    let element = document.createElement('div');
-    element.id = this._id;
-    element.style.height = this._height;
-
-    this._id = config.id;
-    this._element = document.createElement('div');
-    this._element.id = config.id;
-    this._element.style.width = config.width;
-    this._element.style.height = config.height;
-    this._element.classList.add('window');
-    this._element.style.top = config.y;
-    this._element.style.left = config.x;
-    this._element.style.zIndex = config.z;
-
-    this._parentElement = document.getElementById(config.id);
+  _init(){
     this._canvas = document.createElement('canvas');
-    this._parentElement.append(this._canvas);
-    this._refresh();
+    this._element.append(this._canvas);
   }
 
   _refresh(){
-    let height = this._parentElement.clientHeight;
-    let width = this._parentElement.clientWidth;
-
+    let height = this._element.clientHeight;
+    let width = this._element.clientWidth;
     this._canvas.height = height;
     this._canvas.width = width;
   }
 
-  _draw(){
+  _draw(sprites){
+    let ctx = this._canvas.getContext('2d');
+    ctx.save();
+    //ctx.clearRect();
+    ctx.fillStyle = '#FFFFFF';
+    ctx.rect(0, 0, this._canvas.width, this._canvas.height);
+    ctx.fill();
 
+    sprites.forEach((x) => {
+      x.render(ctx);
+    });
+    ctx.restore();
   }
 
   //////////////////////////////////////////////////////////////////////////////
@@ -131,6 +154,15 @@ class Screen {
   //////////////////////////////////////////////////////////////////////////////
   static create(config){
     let element = document.createElement('div');
+    element.id = config.id;
+    element.style.height = config.height;
+    element.style.width = config.width;
+    element.style.left = config.x;
+    element.style.top = config.y;
+    element.style.zIndex = config.z;
+    element.classList.add('window');
+
+    return new Screen(element);
   }
 }
 

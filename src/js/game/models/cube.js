@@ -1,7 +1,8 @@
 /**
- *
+ * Imperium 4X (Web) - Cube
  * ===
  *
+ * @module cube
  */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -65,7 +66,28 @@ class Cube extends Point3D{
   //////////////////////////////////////////////////////////////////////////////
   // Static Methods
   //////////////////////////////////////////////////////////////////////////////
+  static cubeAdd(a, b){
+    if(!(a instanceof Cube) || !(b instanceof Cube)){
+      throw new Error('input not of type Cube');
+    }
 
+    return new Cube(a.x + b.x, a.y + b.y, a.z + b.z);
+  }
+
+  static cubeDistance(a, b){
+    if(!(a instanceof Cube) || !(b instanceof Cube)){
+      throw new Error('input not of type Cube');
+    }
+    return Math.ceil((Math.abs(a.x - b.x) + Math.abs(a.y - b.y) + Math.abs(a.z - b.z)) / 2);
+  }
+
+  static cubeSubstract(a, b){
+    if(!(a instanceof Cube) || !(b instanceof Cube)){
+      throw new Error('input not of type Cube');
+    }
+
+    return new Cube(a.x - b.x, a.y - b.y, a.z - b.z);
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////

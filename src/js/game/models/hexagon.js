@@ -1,7 +1,8 @@
 /**
- *
+ * Imperium 4X (Web) - Hexagon
  * ===
  *
+ * @module hexagon
  */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -62,11 +63,27 @@ class Hexagon extends Point2D{
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
+  _findCorner(size, i){
+    const ANGLE_DEG = 60 * i + 30;
+    const ANGLE_RAD = Math.PI / 180 * ANGLE_DEG;
+    let x = this.x + size + Math.cos(ANGLE_RAD);
+    let y = this.y + size + Math.sin(ANGLE_RAD);
+    return new Point2D(x, y);
+  }
 
   //////////////////////////////////////////////////////////////////////////////
   // Static Methods
   //////////////////////////////////////////////////////////////////////////////
+  static hexagonDistance(a, b){
+    if(!(a instanceof Hexagon) || !(b instanceof Hexagon)){
+      throw new Error('input not of type Hexagon');
+    }
 
+    let cube1 = a.toCube();
+    let cube2 = b.toCube();
+
+    return Math.ceil((Math.abs(cube1.x - cube2.x) + Math.abs(cube1.y - cube2.y) + Math.abs(cube1.z - cube2.z)) / 2);
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
