@@ -14,16 +14,57 @@
 ////////////////////////////////////////////////////////////////////////////////
 class Game {
   constructor(){
-    this._init();
+
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  // Public Methods
+  //////////////////////////////////////////////////////////////////////////////
+  create(){
+    let assemblages = [];
+    assemblages.push({
+      template: 'timer'
+    });
+    for(let idx = 0; idx < 40; idx++) {
+      for (let jdx = 0; jdx < 60; jdx++) {
+        let assemblage = {
+          template: 'cell',
+          position: {
+            x: jdx,
+            y: idx,
+            z: 0
+          },
+          sprite: {
+            name: 'square',
+            height: 1,
+            width: 1,
+            fill: '#FF0000'
+          },
+          on: {
+            on: this._chanceOfLife()
+          }
+        };
+        assemblages.push(assemblage);
+      }
+    }
+    return assemblages;
   }
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Methods
   //////////////////////////////////////////////////////////////////////////////
-  _init(){
-    console.log('_init() called from Game');
+  _chanceOfLife(){
+    const MIN = 1;
+    const MAX = 100;
+    const CHANCE = Math.floor(Math.random() * (MAX - MIN)) + MIN;
+    if(CHANCE > 75){
+      return true;
+    }
+    return false;
   }
 }
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Exports

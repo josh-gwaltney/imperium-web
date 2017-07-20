@@ -8,7 +8,7 @@ const PATHS = {
 };
 
 module.exports = {
-  entry: PATHS.JS + '/site.js',
+  entry: PATHS.JS + '/app.js',
   output: {
     path: PATHS.DIST,
     filename: 'site.js'

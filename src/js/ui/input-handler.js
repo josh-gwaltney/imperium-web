@@ -28,8 +28,8 @@ class InputHandler {
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
 
-  constructor(config){
-    this._messageBus = config.SERVICES.MESSAGE_BUS;
+  constructor(messageBus){
+    this._messageBus = messageBus;
 
     this._mouse = {
       x: 0,
@@ -71,11 +71,10 @@ class InputHandler {
 
   _handleMouseDown(event){
     event.preventDefault();
-    console.log(event);
     if(event.button === 0){
       this._mouse.x = event.clientX;
       this._mouse.y = event.clientY;
-      this._messageBus.publish({ subject: 'input event', body: {
+      this._messageBus.publish({ subject: 'INPUT', body: {
           type: 'click',
           elementId: event.target.parentElement.id,
           x: this._mouse.x,
@@ -92,7 +91,7 @@ class InputHandler {
       let absY = Math.abs(this._mouse.y - event.clientY);
       if ((absX > 10) || (absY > 10)) {
         this._messageBus.publish({
-          subject: 'input event', body: {
+          subject: 'INPUT', body: {
             type: 'drag',
             elementId: event.target.parentElement.id,
             x1: this._mouse.x,
@@ -107,7 +106,7 @@ class InputHandler {
 
   _handleMouseWheel(event){
     event.preventDefault();
-    this._messageBus.publish({ subject: 'input event', body: {
+    this._messageBus.publish({ subject: 'INPUT', body: {
       type: 'zoom',
       elementId: event.target.parentElement.id,
       deltaY: event.deltaY
@@ -115,7 +114,7 @@ class InputHandler {
   }
 
   _handleKeyDown(event){
-    this._messageBus.publish({ subject: 'input event',
+    this._messageBus.publish({ subject: 'INPUT',
       body: {
         type: 'keyboard',
         keyCode: event.keyCode

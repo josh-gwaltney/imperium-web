@@ -1,12 +1,55 @@
-import MessageBus from '../../../shared/src/services/message-bus';
+/**
+ * Imperium 4x (Web) - Constants
+ * ===
+ * Contains immutable values that are application specific.
+ * @module constants
+ */
 
-const SERVICES = {
-  MESSAGE_BUS: new MessageBus()
+////////////////////////////////////////////////////////////////////////////////
+// Imports
+////////////////////////////////////////////////////////////////////////////////
+import MessageService from '../../../shared/src/services/message-service';
+import AccountService from './services/account-service';
+import AuthenticationService from './services/authentication-service';
+import GameService from './services/game-service';
+
+import UI from './ui';
+import Square from './game/sprites/square';
+
+const MODULES = {
+  // Services
+  MESSAGE_SERVICE: MessageService,
+  ACCOUNT_SERVICE: AccountService,
+  AUTHENTICATION_SERVICE: AuthenticationService,
+  GAME_SERVICE: GameService,
+
+  // Modules
+  UI: UI
 };
 
-const UI = {
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+// Modules
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+// Environment
+////////////////////////////////////////////////////////////////////////////////
+
+const UI_SETTINGS = {
   ROOT_ELEMENT_ID: 'root',
-  UNIT: 10,
+  UNIT: 6,
+  SPACING: 1,
+  ZOOM: 1,
+  SPRITES: [
+    {
+      name: 'square',
+      constructor: Square
+    }
+  ],
   WINDOWS: [
     {
       id: 'map',
@@ -16,38 +59,38 @@ const UI = {
       height: '100%',
       width: '100%'
     },
-    {
-      id: 'economy',
-      x: '16px',
-      y: '16px',
-      z: 72,
-      height: '100px',
-      width: '100px'
-    },
-    {
-      id: 'technology',
-      x: '132px',
-      y: '16px',
-      z: 73,
-      height: '100px',
-      width: '100px'
-    },
-    {
-      id: 'diplomacy',
-      x: '248px',
-      y: '16px',
-      z: 74,
-      height: '100px',
-      width: '100px'
-    },
-    {
-      id: 'chat',
-      x: '248px',
-      y: '16px',
-      z: 74,
-      height: '100px',
-      width: '100px'
-    }
+    //{
+    //  id: 'economy',
+    //  x: '16px',
+    //  y: '16px',
+    //  z: 72,
+    //  height: '100px',
+    //  width: '100px'
+    //},
+    //{
+    //  id: 'technology',
+    //  x: '132px',
+    //  y: '16px',
+    //  z: 73,
+    //  height: '100px',
+    //  width: '100px'
+    //},
+    //{
+    //  id: 'diplomacy',
+    //  x: '248px',
+    //  y: '16px',
+    //  z: 74,
+    //  height: '100px',
+    //  width: '100px'
+    //},
+    //{
+    //  id: 'chat',
+    //  x: '248px',
+    //  y: '16px',
+    //  z: 74,
+    //  height: '100px',
+    //  width: '100px'
+    //}
   ]
 };
 
@@ -146,4 +189,4 @@ const MESSAGES = {
   STOP: 'stop'
 };
 
-export { SERVICES, UI, COMPONENTS, ASSEMBLAGES, SYSTEMS, KEYBOARD, INPUT_EVENTS, KEY_CODES, MESSAGES }
+export { MODULES, UI_SETTINGS, COMPONENTS, ASSEMBLAGES, SYSTEMS, KEYBOARD, INPUT_EVENTS, KEY_CODES, MESSAGES }

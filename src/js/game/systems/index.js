@@ -16,10 +16,10 @@ import TimerSystem from './timer-system';
 // Definitions
 ///////////////////////////////////////////////////////////////////////////////
 const SYSTEMS = [
-  {
-    id: 'movement',
-    constructor: MovementSystem
-  },
+  //{
+  //  id: 'movement',
+  //  constructor: MovementSystem
+  //},
   {
     id: 'timer',
     constructor: TimerSystem

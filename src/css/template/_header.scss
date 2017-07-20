@@ -4,11 +4,11 @@
   z-index: 100;
 
   &__left {
-    @include flex-item(1, 1, auto);
+
   }
 
   &__right {
-    @include flex-item(1, 1, auto);
+
   }
 }
 
@@ -18,7 +18,12 @@
     @include flex-item(0, 1, 128px);
 
     &__left {
+      @include flex-item(1, 1, 100%);
       border-bottom: solid 1px $black;
+    }
+
+    &__right {
+      @include flex-item(1, 1, 100%);
     }
   }
 }
@@ -27,5 +32,13 @@
   .header {
     @include flex-box(row);
     @include flex-item(0, 1, 64px);
+
+    &__left {
+      @include flex-item(1, 1, 50%);
+    }
+
+    &__right {
+      @include flex-item(1, 1, 50%);
+    }
   }
 }

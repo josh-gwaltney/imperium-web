@@ -8,32 +8,26 @@ const APP = express();
 const HTTP = require('http').Server(APP);
 const PORT = process.env.PORT || 3050;
 const LOGGER = require('morgan');
-const IO = require('socket.io')(HTTP);
+//var io = require('socket.io')(HTTP);
 
 APP.use(bodyParser.json());
 APP.use(compression());
 APP.use(cors());
 APP.use(express.static(__dirname + '/dist'));
 
-APP.route('*').get((req, res) => {
+//APP.route('/').get((req, res) => {
+//  res.sendFile(path.join(__dirname, 'dist/index.html'));
+//});
+APP.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-// IO.on('connection', (socket) => {
-//   console.log('client connected');
-//
-//   socket.on('message', (data) => {
-//
-//   });
-//
-//   socket.on('send:debugInfo', (data) => {
-//     socket.emit('send:debugInfo', data);
-//   });
-//
-//   socket.on('disconnect', () => {
-//     console.log('goodbye');
-//   });
-// });
+//io.on('connection', function (socket) {
+//  socket.emit('news', { hello: 'world' });
+//  socket.on('my other event', function (data) {
+//    console.log(data);
+//  });
+//});
 
 HTTP.listen(PORT);
 

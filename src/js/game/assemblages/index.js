@@ -13,9 +13,22 @@ import AssemblageManager from '../../../../../shared/src/engine/assemblage-manag
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ///////////////////////////////////////////////////////////////////////////////
-const ASSEMBLAGES = {
-
-};
+const ASSEMBLAGES = [
+  {
+    name: 'timer',
+    components: [
+      'time'
+    ]
+  },
+  {
+    name: 'cell',
+    components: [
+      'position',
+      'sprite',
+      'on'
+    ]
+  }
+];
 
 let assemblageManager = new AssemblageManager(ASSEMBLAGES);
 

@@ -1,8 +1,8 @@
 /**
- * Imperium 4X (Web) - Sprite Component
+ * Imperium 4X (Web) - Position Component
  * ===
  *
- * @module spriteComponent
+ * @module positionComponent
  */
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -13,7 +13,7 @@ import Component from '../../../../../shared/src/engine/component';
 ////////////////////////////////////////////////////////////////////////////////
 // Class
 ////////////////////////////////////////////////////////////////////////////////
-class SpriteComponent extends Component{
+class OnComponent extends Component{
 
   //////////////////////////////////////////////////////////////////////////////
   // Private Properties
@@ -24,46 +24,19 @@ class SpriteComponent extends Component{
    * @property
    * @type{ [ type ]} [ name ] - [ description ]
    */
-  _name;
-  _height;
-  _width;
-  _stroke;
-  _fill;
-
-  get name(){
-    return this._name;
-  }
-
-  get height(){
-    return this._height;
-  }
-
-  get width(){
-    return this._width;
-  }
-
-  get stroke(){
-    return this._stroke;
-  }
-
-  get fill(){
-    return this._fill;
-  }
+  _on;
 
   //////////////////////////////////////////////////////////////////////////////
   // Public Properties
   //////////////////////////////////////////////////////////////////////////////
+  get on(){
+    return this._on;
+  }
 
-  //constructor (entityId, state) {
-  //  super(entityId, state);
   constructor (state) {
     super(state);
 
-    this._name = state.name;
-    this._height = state.height;
-    this._width = state.width;
-    this._stroke = state.stroke;
-    this._fill = state.fill;
+    this._on = state.on;
   };
 
   //////////////////////////////////////////////////////////////////////////////
@@ -75,4 +48,4 @@ class SpriteComponent extends Component{
 ////////////////////////////////////////////////////////////////////////////////
 // Exports
 ////////////////////////////////////////////////////////////////////////////////
-export default SpriteComponent;
+export default OnComponent;

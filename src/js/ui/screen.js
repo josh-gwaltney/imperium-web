@@ -143,8 +143,19 @@ class Screen {
     ctx.rect(0, 0, this._canvas.width, this._canvas.height);
     ctx.fill();
 
-    sprites.forEach((x) => {
-      x.render(ctx);
+    sprites.forEach((sprite) => {
+      //console.log(sprite);
+      sprite.render(ctx);
+      //ctx.save();
+      //const UNIT = 6;
+      //const SPACER = 1;
+      //let x = sprite.x * UNIT + SPACER;
+      //let y = sprite.y * UNIT + SPACER;
+      //let w = UNIT - (SPACER * 2);
+      ////x.render(ctx);
+      //ctx.fillStyle = '#FF0000';
+      //ctx.fillRect(x, y, w, w);
+      //ctx.restore();
     });
     ctx.restore();
   }
