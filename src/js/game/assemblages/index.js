@@ -27,6 +27,14 @@ const ASSEMBLAGES = [
       'sprite',
       'on'
     ]
+  },
+  {
+    name: 'tile',
+    components: [
+      'position',
+      'sprite',
+      'blocking'
+    ]
   }
 ];
 
